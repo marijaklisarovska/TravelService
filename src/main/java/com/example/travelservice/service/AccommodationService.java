@@ -9,10 +9,10 @@ import java.util.Optional;
 
 public interface AccommodationService {
     List<Accommodation> listAllAccommodations();
-    Optional<Accommodation> findById(Long id);
+    Optional<Accommodation> findById(String id);
     Optional<Accommodation> create(AccommodationDto accommodationDto);
-    Optional<Accommodation> update(Long id, AccommodationDto accommodationDto);
-    void deleteById(Long id);
+    Optional<Accommodation> update(String id, AccommodationDto accommodationDto);
+    void deleteById(String id);
     List<Accommodation> search(String name, String location, AccommodationType type);
     List<Accommodation> findByAccommodationTypeBasedOnTheLocation(String location, AccommodationType accommodationType );
     List<Accommodation> findAccommodationsByPriceLessThan(Double pricePerNight, Double rating);

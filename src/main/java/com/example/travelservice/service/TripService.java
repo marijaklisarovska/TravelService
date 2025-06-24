@@ -9,8 +9,8 @@ import java.util.Optional;
 public interface TripService {
     List<Trip> findAll(String username);
     List<Trip> findByName(String username, String name);
-    Optional<Trip> findById(Long id);
+    Optional<Trip> findById(String id);
     Optional<Trip> save(TripDto tripDto, String username);
-    Optional<Trip> edit(Long id, TripDto tripDto);
-    void deleteById(Long id);
+    Optional<Trip> edit(String id, TripDto tripDto);
+    void deleteById(String id);
 }

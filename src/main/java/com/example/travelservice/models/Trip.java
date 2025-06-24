@@ -1,5 +1,8 @@
 package com.example.travelservice.models;
-import jakarta.persistence.*;
+//import jakarta.persistence.*;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
+import org.springframework.data.mongodb.core.mapping.DBRef;
 import jakarta.validation.constraints.Min;
 import lombok.Data;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -8,11 +11,12 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 @Data
-@Entity
+//@Entity
+@Document(collection = "trips")
 public class Trip {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    Long Id;
+    //@GeneratedValue(strategy = GenerationType.IDENTITY)
+    private String id;
 
     String name;
     @Min(value = 0, message = "Budget cannot be a negative number")
@@ -20,14 +24,17 @@ public class Trip {
     @Min(value = 0, message = "Number of people cannot be a negative number")
     Integer numPeople;
     @DateTimeFormat(pattern = "yyyy-MM-dd")
-    LocalDateTime date_from;
+    LocalDateTime dateFrom;
     @DateTimeFormat(pattern = "yyyy-MM-dd")
-    LocalDateTime date_to;
-    @ManyToMany(fetch = FetchType.EAGER)
+    LocalDateTime dateTo;
+ //   @ManyToMany(fetch = FetchType.EAGER)
+    @DBRef
     List<Attraction> attractions;
-    @ManyToMany(fetch = FetchType.EAGER)
+ //   @ManyToMany(fetch = FetchType.EAGER)
+    @DBRef
     List<Accommodation> accommodations;
-    @ManyToOne
+ //   @ManyToOne
+    @DBRef
     User user;
 
     public Trip() {
@@ -38,8 +45,8 @@ public class Trip {
         this.name = name;
         this.budget = budget;
         this.numPeople = numPeople;
-        this.date_from = date_from;
-        this.date_to = date_to;
+        this.dateFrom = date_from;
+        this.dateTo = date_to;
         this.attractions = attractions;
         this.accommodations = accommodations;
         this.user = user;

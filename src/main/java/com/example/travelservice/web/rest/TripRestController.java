@@ -36,7 +36,7 @@ public class TripRestController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Trip> findById(@PathVariable Long id){
+    public ResponseEntity<Trip> findById(@PathVariable String id){
         return this.tripService.findById(id)
                 .map(trip -> ResponseEntity.ok().body(trip))
                 .orElseGet(() -> ResponseEntity.notFound().build());
@@ -57,14 +57,14 @@ public class TripRestController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Trip> edit(@PathVariable Long id, @RequestBody TripDto tripDto){
+    public ResponseEntity<Trip> edit(@PathVariable String id, @RequestBody TripDto tripDto){
         return this.tripService.edit(id, tripDto)
                 .map(trip -> ResponseEntity.ok().body(trip))
                 .orElseGet(() -> ResponseEntity.notFound().build());
     }
 
     @DeleteMapping("/{id}")
-    public void deleteById(@PathVariable Long id){
+    public void deleteById(@PathVariable String id){
         this.tripService.deleteById(id);
     }
 }

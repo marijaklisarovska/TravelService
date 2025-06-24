@@ -24,7 +24,7 @@ public class AccommodationRestController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Accommodation> findById(@PathVariable Long id) {
+    public ResponseEntity<Accommodation> findById(@PathVariable String id) {
         return this.accommodationService.findById(id)
                 .map(accommodation -> ResponseEntity.ok().body(accommodation))
                 .orElseGet(() -> ResponseEntity.notFound().build());
@@ -40,14 +40,14 @@ public class AccommodationRestController {
 
 
     @PutMapping("/{id}")
-    public ResponseEntity<Accommodation> save(@PathVariable Long id, @RequestBody AccommodationDto accommodationDto) {
+    public ResponseEntity<Accommodation> save(@PathVariable String id, @RequestBody AccommodationDto accommodationDto) {
         return this.accommodationService.update(id, accommodationDto)
                 .map(accommodation -> ResponseEntity.ok().body(accommodation))
                 .orElseGet(() -> ResponseEntity.badRequest().build());
     }
 
     @DeleteMapping("/delete/{id}")
-    public ResponseEntity deleteById(@PathVariable Long id) {
+    public ResponseEntity deleteById(@PathVariable String id) {
         this.accommodationService.deleteById(id);
         return ResponseEntity.ok().build();
     }

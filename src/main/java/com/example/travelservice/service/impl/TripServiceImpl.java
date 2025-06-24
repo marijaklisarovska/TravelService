@@ -33,7 +33,7 @@ public class TripServiceImpl implements TripService {
         this.userRepository = userRepository;
     }
 
-    public List<Attraction> mapToAttractions(List<Long> attractionIds){
+    public List<Attraction> mapToAttractions(List<String> attractionIds){
         List<Attraction> attractions;
         if(attractionIds != null && !attractionIds.isEmpty()){
             attractions = attractionIds.stream()
@@ -47,7 +47,7 @@ public class TripServiceImpl implements TripService {
         return attractions;
     }
 
-    public List<Accommodation> mapToAccommodations(List<Long> accommodationIds){
+    public List<Accommodation> mapToAccommodations(List<String> accommodationIds){
         List<Accommodation> accommodations;
         if(accommodationIds != null && !accommodationIds.isEmpty()){
             accommodations = accommodationIds.stream()
@@ -63,7 +63,7 @@ public class TripServiceImpl implements TripService {
 
     @Override
     public List<Trip> findAll(String username) {
-        return this.tripRepository.findAllByOrderByDate_from(username);
+        return this.tripRepository.findAllByOrderByDateFrom(username);
     }
 
     @Override
@@ -72,7 +72,7 @@ public class TripServiceImpl implements TripService {
     }
 
     @Override
-    public Optional<Trip> findById(Long id) {
+    public Optional<Trip> findById(String id) {
         return this.tripRepository.findById(id);
     }
 
@@ -88,15 +88,15 @@ public class TripServiceImpl implements TripService {
     }
 
     @Override
-    public Optional<Trip> edit(Long id, TripDto tripDto) {
+    public Optional<Trip> edit(String id, TripDto tripDto) {
         Trip trip = this.tripRepository.findById(id)
                 .orElseThrow(() -> new TripNotFoundException(id));
 
         trip.setName(tripDto.name() != null ? tripDto.name() : trip.getName());
         trip.setBudget(tripDto.budget() != null ? tripDto.budget() : trip.getBudget());
         trip.setNumPeople(tripDto.numPeople() != null ? tripDto.numPeople() : trip.getNumPeople());
-        trip.setDate_from(tripDto.date_from() != null ? tripDto.date_from() : trip.getDate_from());
-        trip.setDate_to(tripDto.date_to() != null ? tripDto.date_to() : trip.getDate_to());
+        trip.setDateFrom(tripDto.date_from() != null ? tripDto.date_from() : trip.getDateFrom());
+        trip.setDateTo(tripDto.date_to() != null ? tripDto.date_to() : trip.getDateTo());
         trip.setAccommodations(tripDto.accommodations() != null ? mapToAccommodations(tripDto.accommodations()) : trip.getAccommodations());
         trip.setAttractions(tripDto.attractions() != null ? mapToAttractions(tripDto.attractions()) : trip.getAttractions());
 
@@ -104,7 +104,7 @@ public class TripServiceImpl implements TripService {
     }
 
     @Override
-    public void deleteById(Long id) {
+    public void deleteById(String id) {
         this.tripRepository.deleteById(id);
     }
 }

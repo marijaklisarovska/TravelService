@@ -25,7 +25,7 @@ public class AttractionsRestController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Attraction> findById(@PathVariable Long id) {
+    public ResponseEntity<Attraction> findById(@PathVariable String id) {
         return this.attractionsService.getById(id)
                 .map(attraction -> ResponseEntity.ok().body(attraction))
                 .orElseGet(() -> ResponseEntity.notFound().build());
@@ -39,14 +39,14 @@ public class AttractionsRestController {
     }
 
     @PutMapping("/edit/{id}")
-    public ResponseEntity<Attraction> save(@PathVariable Long id, @RequestBody AttractionDto attractionDto) {
+    public ResponseEntity<Attraction> save(@PathVariable String id, @RequestBody AttractionDto attractionDto) {
         return this.attractionsService.edit(id, attractionDto)
                 .map(attraction -> ResponseEntity.ok().body(attraction))
                 .orElseGet(() -> ResponseEntity.badRequest().build());
     }
 
     @DeleteMapping("/delete/{id}")
-    public ResponseEntity deleteById(@PathVariable Long id) {
+    public ResponseEntity deleteById(@PathVariable String id) {
         this.attractionsService.deleteById(id);
         if (this.attractionsService.getById(id).isEmpty()) return ResponseEntity.ok().build();
         return ResponseEntity.badRequest().build();

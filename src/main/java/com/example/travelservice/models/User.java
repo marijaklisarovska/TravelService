@@ -1,6 +1,8 @@
 package com.example.travelservice.models;
 
-import jakarta.persistence.*;
+//import jakarta.persistence.*;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -13,17 +15,18 @@ import java.util.Date;
 import java.util.List;
 
 @Data
-@Entity
-@Table(name = "travel_users")
+//@Entity
+//@Table(name = "travel_users")
+@Document(collection = "users")
 public class User implements UserDetails {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+  //  @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private String id;
 
-    @Column
+ //   @Column
     private String fullName;
 
-    @Column(unique = true)
+//    @Column(unique = true)
     private String email;
 
     private String password;

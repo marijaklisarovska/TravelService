@@ -2,13 +2,14 @@ package com.example.travelservice.repository;
 
 import com.example.travelservice.models.Accommodation;
 import com.example.travelservice.models.enumerations.AccommodationType;
-import org.springframework.data.jpa.repository.JpaRepository;
+//import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
 import java.util.Optional;
 
-public interface AccommodationRepository extends JpaRepository<Accommodation, Long> {
+public interface AccommodationRepository extends MongoRepository<Accommodation, String> {
     List<Accommodation> findAllByLocationOrderByRatingDesc(String location);
     List<Accommodation> findAllByLocationLikeAndAccommodationTypeOrderByRatingDesc(String location, AccommodationType accommodationType);
     List<Accommodation> findAllByPricePerNightLessThanOrderByRatingDesc(Double price);

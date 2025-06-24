@@ -24,7 +24,7 @@ public class AttractionsServiceImpl implements AttractionsService {
     }
 
     @Override
-    public Optional<Attraction> getById(Long Id) {
+    public Optional<Attraction> getById(String Id) {
         return this.attractionsRepository.findById(Id);
     }
     @Override
@@ -40,7 +40,7 @@ public class AttractionsServiceImpl implements AttractionsService {
     }
 
     @Override
-    public Optional<Attraction> edit(Long id, AttractionDto attractionDto) {
+    public Optional<Attraction> edit(String id, AttractionDto attractionDto) {
         Attraction a = this.attractionsRepository.findById(id).orElseThrow(() -> new RuntimeException("Attraction not found"));
         a.setName(attractionDto.name());
         a.setDescription(attractionDto.description());
@@ -57,7 +57,7 @@ public class AttractionsServiceImpl implements AttractionsService {
     }
 
     @Override
-    public void deleteById(Long id) {
+    public void deleteById(String id) {
         this.attractionsRepository.deleteById(id);
     }
 

@@ -1,22 +1,24 @@
 package com.example.travelservice.models;
 
 import com.example.travelservice.models.enumerations.AccommodationType;
-import jakarta.persistence.*;
+//import jakarta.persistence.*;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
 import lombok.Data;
 
 @Data
-@Entity
+@Document(collection = "accommodations")
 public class Accommodation {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    Long Id;
+  //  @GeneratedValue(strategy = GenerationType.IDENTITY)
+    String Id;
     String name;
     String location;
     Double rating;
     Double pricePerNight;
 
     Integer amountOfPeople;
-    @Enumerated(EnumType.STRING)
+ //   @Enumerated(EnumType.STRING)
     AccommodationType accommodationType;
 
 

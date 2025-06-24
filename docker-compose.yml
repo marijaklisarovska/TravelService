@@ -1,16 +1,30 @@
 version: "3"
 services:
-  travel-db:
-    image: "postgres"
-    container_name: "travel"
-    environment:
-      - POSTGRES_USER=mila
-      - POSTGRES_PASSWORD=wp123
-      - POSTGRES_DB=travel
+  mongo:
+    image: mongo:6.0
+    container_name: travel-mongo
+    restart: always
     ports:
-      - "5432:5432"
+      - "27018:27017"
+    environment:
+      MONGO_INITDB_DATABASE: travel
     volumes:
-      - ./postgres-data:/var/lib/postgresql/data
+      - ./mongo-data:/data/db
+
+
+#version: "3"
+#services:
+#  travel-db:
+#    image: "postgres"
+#    container_name: "travel"
+#    environment:
+#      - POSTGRES_USER=mila
+#      - POSTGRES_PASSWORD=wp123
+#      - POSTGRES_DB=travel
+#    ports:
+#      - "5432:5432"
+#    volumes:
+#      - ./postgres-data:/var/lib/postgresql/data
 #version: '3.9'
 #
 #services:

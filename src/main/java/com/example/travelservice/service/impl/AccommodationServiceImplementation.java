@@ -26,7 +26,7 @@ public class AccommodationServiceImplementation implements AccommodationService 
     }
 
     @Override
-    public Optional<Accommodation> findById(Long id) {
+    public Optional<Accommodation> findById(String id) {
         return Optional.ofNullable(accommodationRepository.findById(id)
                 .orElseThrow(InvalidAccommodationIdException::new));
     }
@@ -38,7 +38,7 @@ public class AccommodationServiceImplementation implements AccommodationService 
     }
 
     @Override
-    public Optional<Accommodation> update(Long id, AccommodationDto accommodationDto) {
+    public Optional<Accommodation> update(String id, AccommodationDto accommodationDto) {
         Accommodation accommodation = this.accommodationRepository.findById(id).orElseThrow(
                 () -> new InvalidAccommodationIdException());
         accommodation.setName(accommodationDto.name());
@@ -53,7 +53,7 @@ public class AccommodationServiceImplementation implements AccommodationService 
     }
 
     @Override
-    public void deleteById(Long id) {
+    public void deleteById(String id) {
         this.accommodationRepository.deleteById(id);
     }
 

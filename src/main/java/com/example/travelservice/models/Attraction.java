@@ -4,15 +4,17 @@ import com.example.travelservice.models.enumerations.AttractionType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
 import lombok.Data;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
 
 @Data
-@Entity
+//@Entity
+@Document(collection = "attractions")
 public class Attraction {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    Long Id;
+  //  @GeneratedValue(strategy = GenerationType.IDENTITY)
+    String Id;
     String name;
     String description;
     String location;

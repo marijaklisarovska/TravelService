@@ -9,12 +9,12 @@ import java.util.Optional;
 
 public interface AttractionsService {
     List<Attraction> getAll();
-    Optional<Attraction> getById(Long Id);
-    void deleteById(Long id);
+    Optional<Attraction> getById(String Id);
+    void deleteById(String id);
     List<Attraction> findAllByLocation(String location);
     List<Attraction> search(String name, String location, AttractionType type);
     Optional<Attraction> save(AttractionDto attractionDto);
-    Optional<Attraction> edit(Long id, AttractionDto attractionDto);
+    Optional<Attraction> edit(String id, AttractionDto attractionDto);
 
     List<Attraction> findByNameAndLocation(String name, String location);
 }

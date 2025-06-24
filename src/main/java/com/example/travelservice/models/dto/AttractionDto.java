@@ -2,7 +2,7 @@ package com.example.travelservice.models.dto;
 
 import com.example.travelservice.models.enumerations.AttractionType;
 
-public record AttractionDto (Long id,
+public record AttractionDto (String id,
     String name,
     String description,
     String location,
