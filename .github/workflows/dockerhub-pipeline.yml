@@ -21,10 +21,10 @@ jobs:
 
       - name: Build and push backend image
         run: |
-          docker build -t ${{ secrets.DOCKER_USERNAME }}/travel-backend ./src
-          docker push ${{ secrets.DOCKER_USERNAME }}/travel-backend
+          docker build -t ${{ secrets.DOCKERHUB_USERNAME }}/travel-backend ./src
+          docker push ${{ secrets.DOCKERHUB_USERNAME }}/travel-backend
 
       - name: Build and push frontend image
         run: |
-          docker build -t ${{ secrets.DOCKER_USERNAME }}/travel-frontend ./frontend
-          docker push ${{ secrets.DOCKER_USERNAME }}/travel-frontend
+          docker build -t ${{ secrets.DOCKERHUB_USERNAME }}/travel-frontend ./frontend
+          docker push ${{ secrets.DOCKERHUB_USERNAME }}/travel-frontend
