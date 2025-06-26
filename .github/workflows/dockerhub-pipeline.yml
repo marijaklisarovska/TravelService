@@ -1,0 +1,30 @@
+name: DockerHub CI/CD Pipeline
+
+on:
+  push:
+    branches:
+      - devops-mongo-version
+
+jobs:
+  build-and-push:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Log in to Docker Hub
+        uses: docker/login-action@v3
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+
+      - name: Build and push backend image
+        run: |
+          docker build -t ${{ secrets.DOCKER_USERNAME }}/travel-backend ./src
+          docker push ${{ secrets.DOCKER_USERNAME }}/travel-backend
+
+      - name: Build and push frontend image
+        run: |
+          docker build -t ${{ secrets.DOCKER_USERNAME }}/travel-frontend ./frontend
+          docker push ${{ secrets.DOCKER_USERNAME }}/travel-frontend
