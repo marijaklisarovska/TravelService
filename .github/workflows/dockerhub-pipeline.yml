@@ -21,7 +21,7 @@ jobs:
 
       - name: Build and push backend image
         run: |
-          docker build -t ${{ secrets.DOCKERHUB_USERNAME }}/travel-backend ./src
+          docker build -t ${{ secrets.DOCKERHUB_USERNAME }}/travel-backend -f Dockerfile ./src
           docker push ${{ secrets.DOCKERHUB_USERNAME }}/travel-backend
 
       - name: Build and push frontend image
