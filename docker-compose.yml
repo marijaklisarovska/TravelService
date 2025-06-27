@@ -5,11 +5,29 @@ services:
     container_name: travel-mongo
     restart: always
     ports:
-      - "27018:27017"
+      - "27017:27017"
     environment:
       MONGO_INITDB_DATABASE: travel
     volumes:
       - ./mongo-data:/data/db
+
+  backend:
+    image: marijaklisarovska/travel-backend:latest
+    container_name: travel-backend
+    depends_on:
+      - mongo
+    ports:
+      - "8080:8080"
+    environment:
+      - SPRING_DATA_MONGODB_URI=mongodb://mongo:27017/travel
+
+  frontend:
+    image: marijaklisarovska/travel-frontend:latest
+    container_name: travel-frontend
+    ports:
+      - "3000:80"
+    depends_on:
+      - backend
 
 
 #version: "3"
